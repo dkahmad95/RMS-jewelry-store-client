@@ -1,0 +1,117 @@
+.suppliers{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    position: relative;
+   
+    
+}
+.supplierListTitle{
+    font-weight: 750;
+    margin-bottom: 35px;
+   
+    
+    
+}
+.suppliersAddButton {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(189, 168, 77);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px;
+    
+   
+    
+  }
+  .listButton{
+    border: none;
+    background-color: none;
+  }
+
+  .suppliersDataGrid{
+   margin-bottom: 35px;
+    height: 70%;
+    
+  }
+.suppleirsListSuppleirs{
+    display: flex;
+    align-items: center;
+    
+}
+.suppleirsListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+
+
+.suppleirsListHistory{
+color: black;
+   cursor: pointer;
+   margin-right: 10px;
+}
+.suppleirsListPay{
+    color: green;
+   cursor: pointer;
+   margin-right: 10px;
+}
+.suppleirsListEdit{
+    color: blue;
+   cursor: pointer;
+   margin-right: 10px;
+}
+
+.suppleirsListDelete{
+    color: red;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.suppleirsListHistory,
+.suppleirsListPay,
+.suppleirsListEdit,
+.suppleirsListDelete {
+  font-size: 24px; /* Adjust the icon size */
+  cursor: pointer;
+  transition: color 0.3s; /* Add smooth transition effect for color change */
+}
+
+/* Add a hover effect to change the icon's color */
+.suppleirsListHistory:hover,
+.suppleirsListPay:hover,
+.suppleirsListEdit:hover,
+.suppleirsListDelete:hover {
+  color: #007bff; /* Change to the desired color on hover */
+}
+
+/* Style the text container that appears on hover */
+.text-container {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  width: 150px; /* Adjust the width as needed */
+  text-align: center;
+  top: -30px; /* Position above the icons */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Show the text container on hover */
+.suppliersIcons:hover .text-container {
+  display: block;
+}

@@ -1,0 +1,119 @@
+.supplierPay {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.supplierPayContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.supplierPayLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  margin: 20px;
+  margin-right: 20px;
+}
+.supplierPayTitle {
+  margin-bottom: 70px;
+}
+
+.leftContent {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.leftContent > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(151, 150, 150);
+}
+
+.leftContent > input {
+  height: 20px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.middlediv{
+    width: 200px;
+}
+.supplierPayRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  margin: 20px;
+}
+
+.rightContent {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.rightContent > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(151, 150, 150);
+}
+
+.rightContent > input {
+  height: 20px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.supplierPayAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: rgba(189, 168, 77);
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 50px; 
+}
+
+.paymentContainer{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+
+
+.paymentContainer label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.paymentContainer input {
+  width: 100px; /* Adjust the width as needed */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right : 50px;
+}
+
+.paymentContainer span {
+  font-weight: bold;
+}

@@ -20,7 +20,7 @@ const Chart = ({ title, data, dataKeys, grid }) => {
               key={index}
               type="monotone"
               dataKey={dataKey}
-              stroke={dataKey == "Expenses" ? `red` : `green`}
+              stroke={dataKey === "Expenses" ? `red` : `green`}
             />
           ))}
           <Tooltip />

@@ -25,7 +25,7 @@ const SupplierTransReceipt = () => {
     getSuppliers(dispatch);
   }, [dispatch, sTransId]);
 
-  const supplierId = supplierOneTrans.supplierId;
+  // const supplierId = supplierOneTrans.supplierId;
 
   // // get supplierInfo by its id
   // const supplierInfo = suppliers.find((id) => id._id === supplierId);

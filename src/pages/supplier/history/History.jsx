@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { format } from "date-fns";
-import { getOneSupplier, getOneSupplierTrans } from "../../../redux/apiCalls";
+import { getOneSupplierTrans } from "../../../redux/apiCalls";
 
 const History = () => {
   const dispatch = useDispatch();

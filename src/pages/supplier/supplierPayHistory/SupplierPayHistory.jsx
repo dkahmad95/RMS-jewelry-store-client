@@ -5,7 +5,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import { getOneSupplier, getOneSupplierPay, getSupplierPay } from "../../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { suppliersRows } from "../../../dummyData";
 import { format } from "date-fns";
 import { OpenWith } from "@mui/icons-material";
 import { getSupplierPayClean } from "../../../redux/supplierPayRedux";

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "./administration.css"
 import{useDispatch, useSelector} from "react-redux"
 import { useNavigate } from "react-router-dom";
-import { getOverall, updateOverall } from "../../redux/apiCalls";
+import {  updateOverall } from "../../redux/apiCalls";
 const Administration = () => {
   const [inputs, setInputs] = useState("");
   const dispatch = useDispatch();

@@ -1,4 +1,3 @@
-import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 import "./featuredinfo.css";
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
@@ -30,10 +29,6 @@ export default function FeaturedInfo() {
         console.error("Error fetching gold price:", error);
       });
   };
-  useEffect(() => {
-    getOverall(dispatch);
-    dispatch(updateOverall(newOverallRamli, overallId));
-  }, [dispatch]);
 
   const w18KtoRamli = useMemo(() => {
     return ((overall?.overall18K * 750) / 995).toFixed(2);
@@ -64,13 +59,18 @@ export default function FeaturedInfo() {
       parseFloat(overall?.overallCash) - parseFloat(overall?.overallExpenses)
     );
   }, [overall?.overallCash, overall?.overallExpenses]);
+  const newOverallRamli = useMemo(() => {
+    // eslint-disable-next-line
+    return overallRamli, overallSales, avgOjur18K, avgOjur21K
+  }, [overallRamli, overallSales, avgOjur18K, avgOjur21K]);
 
-  const newOverallRamli = {
-    overallRamli,
-    overallSales,
-    avgOjur18K,
-    avgOjur21K,
-  };
+
+  useEffect(() => {
+    getOverall(dispatch);
+    dispatch(updateOverall(newOverallRamli, overallId));
+  }, [dispatch, overallId, newOverallRamli]);
+
+  
   return (
     <div className="dashboard-container">
       <div className="totalSales">

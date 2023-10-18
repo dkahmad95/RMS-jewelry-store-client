@@ -25,7 +25,7 @@ const Login = () => {
         <form className="loginForm">
           <div className="loginInput">
             <label>User Name</label>
-            <label>first Name</label>
+            
             <input
               type="text"
               placeholder="username"

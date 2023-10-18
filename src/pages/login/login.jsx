@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import "./login.css";
 import { login } from "../../redux/apiCalls";
 import { loginInitial } from "../../redux/userRedux";
+import CircularProgress from "../../components/CircularProgress/CircularProgress";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.user.error);
-  useEffect(()=>{
-    dispatch(loginInitial())
-  },[dispatch])
+  const { error, isFetching } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(loginInitial());
+  }, [dispatch]);
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -20,7 +21,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="loginContainer">
-        <h1 className="title">Login</h1>
+        <h1 className="title">LoginLoginLoginLoginLogin</h1>
         <form className="loginForm">
           <div className="loginInput">
             <label>User Name</label>
@@ -28,7 +29,7 @@ const Login = () => {
               type="text"
               placeholder="username"
               onChange={(e) => setUsername(e.target.value)}
-              />
+            />
           </div>
           <div className="loginInput">
             <label>Password</label>
@@ -36,16 +37,23 @@ const Login = () => {
               type="password"
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
-              />
+            />
           </div>
-              {error && (
-                <label style={{ color: 'red' , marginBottom: "20px"}}>Something went wrong! Please try again.</label>
-              )}
-          <button className="button" onClick={handleClick}>
+          {error && (
+            <label style={{ color: "red", marginBottom: "20px" }}>
+              Something went wrong! Please try again.
+            </label>
+          )}
+          <button
+            disabled={isFetching}
+            className={isFetching ? "isFetchingButton" : "button"}
+            onClick={handleClick}
+          >
             Login
           </button>
         </form>
       </div>
+      {isFetching && <CircularProgress />}
     </div>
   );
 };

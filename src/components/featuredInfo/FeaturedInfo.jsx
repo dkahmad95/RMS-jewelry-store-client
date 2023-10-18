@@ -9,8 +9,8 @@ export default function FeaturedInfo() {
   const [goldPrice, setGoldPrice] = useState(null);
   const dispatch = useDispatch();
   const overall = useSelector((state) => state.overall.overall[0]);
-  const overallId = overall._id;
-  
+  const overallId = overall?._id;
+
   const onClick = () => {
     axios
       .get(
@@ -20,7 +20,7 @@ export default function FeaturedInfo() {
         if (response.data.rates && response.data.rates.USD) {
           const goldPriceValue = response.data.rates.USD;
           const twoDecimalDigits = parseFloat(goldPriceValue).toFixed(2);
-          setGoldPrice (twoDecimalDigits);
+          setGoldPrice(twoDecimalDigits);
           console.log(twoDecimalDigits);
         } else {
           console.error("Unexpected response format:", response.data);
@@ -29,44 +29,42 @@ export default function FeaturedInfo() {
       .catch((error) => {
         console.error("Error fetching gold price:", error);
       });
-    };
-    useEffect(() => {
-      getOverall(dispatch);
-      dispatch(updateOverall(newOverallRamli, overallId));
-     
-      }, [dispatch]);
-      
+  };
+  useEffect(() => {
+    getOverall(dispatch);
+    dispatch(updateOverall(newOverallRamli, overallId));
+  }, [dispatch]);
+
   const w18KtoRamli = useMemo(() => {
-    return ((overall.overall18K * 750) / 995).toFixed(2);
-  }, [overall.overall18K]);
+    return ((overall?.overall18K * 750) / 995).toFixed(2);
+  }, [overall?.overall18K]);
 
   const w21KtoRamli = useMemo(() => {
-    return ((overall.overall21K * 875) / 995).toFixed(2);
-  }, [overall.overall21K]);
+    return ((overall?.overall21K * 875) / 995).toFixed(2);
+  }, [overall?.overall21K]);
 
   const avgOjur18K = parseFloat(
-    overall.overallPrice18K / overall.overall18K
+    overall?.overallPrice18K / overall?.overall18K
   ).toFixed(2);
 
   const avgOjur21K = parseFloat(
-    overall.overallPrice21K / overall.overall21K
+    overall?.overallPrice21K / overall?.overall21K
   ).toFixed(2);
-
 
   const overallRamli = useMemo(() => {
     return (
       parseFloat(w18KtoRamli) +
       parseFloat(w21KtoRamli) +
-      parseFloat(overall.overall24K)
+      parseFloat(overall?.overall24K)
     ).toFixed(2);
-  }, [w18KtoRamli, w21KtoRamli, overall.overall24K]);
+  }, [w18KtoRamli, w21KtoRamli, overall?.overall24K]);
 
   const overallSales = useMemo(() => {
     return (
-      parseFloat(overall.overallCash) - parseFloat(overall.overallExpenses)
+      parseFloat(overall?.overallCash) - parseFloat(overall?.overallExpenses)
     );
-  }, [overall.overallCash, overall.overallExpenses]);
- 
+  }, [overall?.overallCash, overall?.overallExpenses]);
+
   const newOverallRamli = {
     overallRamli,
     overallSales,
@@ -76,12 +74,9 @@ export default function FeaturedInfo() {
   return (
     <div className="dashboard-container">
       <div className="totalSales">
-        <div
-          className="cardGoldPrice"
-        onClick={onClick}
-        >
+        <div className="cardGoldPrice" onClick={onClick}>
           <h2>Gold Price</h2>
-            <div className="metric">{goldPrice}</div>
+          <div className="metric">{goldPrice}</div>
         </div>
         <div className="card">
           <h2>Total Sales</h2>
@@ -91,33 +86,33 @@ export default function FeaturedInfo() {
       <div className="ojur">
         <div className="card">
           <h2>Total Price 18K</h2>
-          <div className="metric">$ {overall.overallPrice18K}</div>
+          <div className="metric">$ {overall?.overallPrice18K}</div>
         </div>
         <div className="card">
           <h2>Total Price 21K</h2>
-          <div className="metric">$ {overall.overallPrice21K}</div>
+          <div className="metric">$ {overall?.overallPrice21K}</div>
         </div>
         <div className="card">
           <h2>avg Ojur 18K</h2>
-          <div className="metric">$ {overall.avgOjur18K}</div>
+          <div className="metric">$ {overall?.avgOjur18K}</div>
         </div>
         <div className="card">
           <h2>avg Ojur 21K</h2>
-          <div className="metric">$ {overall.avgOjur21K}</div>
+          <div className="metric">$ {overall?.avgOjur21K}</div>
         </div>
       </div>
       <div className="weights">
         <div className="card">
           <h2>Total 18K</h2>
-          <div className="metric">{overall.overall18K} g</div>
+          <div className="metric">{overall?.overall18K} g</div>
         </div>
         <div className="card">
           <h2>Total 21K</h2>
-          <div className="metric">{overall.overall21K} g</div>
+          <div className="metric">{overall?.overall21K} g</div>
         </div>
         <div className="card">
           <h2>Total 24K</h2>
-          <div className="metric">{overall.overall24K} g</div>
+          <div className="metric">{overall?.overall24K} g</div>
         </div>
         <div className="card">
           <h2>Total Ramli</h2>
@@ -127,7 +122,7 @@ export default function FeaturedInfo() {
       <div className="silver">
         <div className="card">
           <h2>Total Silver</h2>
-          <div className="metric">{overall.overallSilver} g</div>
+          <div className="metric">{overall?.overallSilver} g</div>
         </div>
       </div>
     </div>

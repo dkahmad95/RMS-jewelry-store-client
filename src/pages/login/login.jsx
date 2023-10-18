@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="loginContainer">
-        <h1 className="title">LoginLoginLoginLoginLogin</h1>
+        <h1 className="title">Login</h1>
         <form className="loginForm">
           <div className="loginInput">
             <label>User Name</label>

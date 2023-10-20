@@ -88,8 +88,8 @@ const Expenses = () => {
     },
   ];
 
-  const handleAdd = () => {
-    addExpenses(dispatch, inputs);
+  const handleAdd = async  () => {
+    await addExpenses(dispatch, inputs);
     window.location.reload();
   };
 

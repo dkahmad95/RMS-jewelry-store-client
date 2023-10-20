@@ -101,7 +101,7 @@ console.log(supplierId)
     const date = new Date();
     const formattedDate = format(date, "dd/MM/yyyy");
     
-    const handlSubmit= (e) =>{
+    const handlSubmit= async (e) =>{
       e.preventDefault()
       
       const oldCashBal = parseFloat(oneSupplier.cashFinalBal)
@@ -112,7 +112,7 @@ console.log(supplierId)
       const newSupplierPay = {...inputs , totalRamli,finalRamliBal,finalCashBal,oldRamliBal,oldCashBal,ramli18K,ramli21K ,supplierId}
     console.log("newSupplierPay",newSupplierPay)
     
-    addSupplierPay(dispatch,newSupplierPay)
+    await addSupplierPay(dispatch,newSupplierPay)
     navigate("/supplierPayHistory/"+ supplierId)
 
   }

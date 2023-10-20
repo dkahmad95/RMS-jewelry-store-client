@@ -162,7 +162,7 @@ const SupplierTrans = () => {
     calculateTotal();
   }, [items, calculateTotal]);
 
-  const handleAddTrans = (e) => {
+  const handleAddTrans = async (e) => {
     e.preventDefault();
     const ramliSec = {
       total18KWeight,
@@ -185,7 +185,7 @@ const SupplierTrans = () => {
     const newFinalBalAndRamli = {ramliFinalBal,cashFinalBal}
 
     addSupplierTrans(dispatch, newSupplierTrans)
-    dispatch(updateSupplier(newFinalBalAndRamli,supplierId))
+    await dispatch(updateSupplier(newFinalBalAndRamli,supplierId))
   
     navigate("/history/"+ supplierId)
   };

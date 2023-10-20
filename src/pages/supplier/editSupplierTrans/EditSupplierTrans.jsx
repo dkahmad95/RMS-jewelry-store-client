@@ -120,14 +120,16 @@ const EditSupplierTrans = () => {
   const newRamliCashFinal = {ramliFinalBal,cashFinalBal}
   console.log('newRamliCashFinal',newRamliCashFinal)
   console.log('ramliFinalBal',ramliFinalBal)
-  const handleSubmit = (e) => {
+
+  
+  const handleSubmit =async (e) => {
     e.preventDefault();
     const totalSilver = silverWeight
     const sTrans = { items, ramliSec, cashSec ,totalSilver };
     const newSupplierTrans = { sTrans };
     console.log(newSupplierTrans);
-    dispatch(updateSupplierTrans(newSupplierTrans, sTransId));
-    dispatch(updateSupplier(newRamliCashFinal,oneSupplierId))
+    await dispatch(updateSupplierTrans(newSupplierTrans, sTransId));
+    await dispatch(updateSupplier(newRamliCashFinal,oneSupplierId))
     // const newCTrans = { customername, phone, items, total };
     // dispatch(updateCTrans(newCTrans, cTransId));
     navigate("/history/"+ sTransId );

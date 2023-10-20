@@ -20,9 +20,9 @@ const NewSupplier = () => {
   }
   console.log(inputs)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addSupplier(dispatch,inputs)
+    await addSupplier(dispatch,inputs)
     navigate("/suppliers")
   }
 

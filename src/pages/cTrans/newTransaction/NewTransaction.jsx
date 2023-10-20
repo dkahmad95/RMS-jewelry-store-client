@@ -25,13 +25,13 @@ const NewTransaction = () => {
   };
 
   // create a new CTrans
-  const handleAdd = () => {
+  const handleAdd = async () => {
     const { customername, phone } = inputs;
     const newCTrans = { customername, phone, items, total };
     
 
-    addCTrans(dispatch, newCTrans);
-    navigate("/customerTransactions")
+     await addCTrans(dispatch, newCTrans);
+      navigate("/customerTransactions")
   };
 
   // Function to add a new form to the array

@@ -29,9 +29,9 @@ const mySupplierId = suppliers.find((item)=> item._id === supplierId)
   };
   console.log(info);
 
-  const handleEdite = (e) => {
+  const handleEdite = async (e) => {
     e.preventDefault();
-    dispatch(updateSupplier(info , supplierId))
+   await dispatch(updateSupplier(info , supplierId))
     navigate("/suppliers")
 
   }

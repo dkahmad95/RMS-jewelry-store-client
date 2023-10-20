@@ -11,7 +11,7 @@ const Expenses = () => {
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.expenses.expenses);
   console.log(expenses);
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({expensename: "salaries"});
   const [open, setOpen] = React.useState(false);
   const isAdmin = useSelector((state) => state.user.currentUser.isAdmin);
 

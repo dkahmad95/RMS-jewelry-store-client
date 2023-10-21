@@ -86,11 +86,11 @@ export default function FeaturedInfo() {
       <div className="ojur">
         <div className="card">
           <h2>Total Price 18K</h2>
-          <div className="metric">$ {overall?.overallPrice18K}</div>
+          <div className="metric">$ {parseFloat(overall?.overallPrice18K).toFixed(2)}</div>
         </div>
         <div className="card">
           <h2>Total Price 21K</h2>
-          <div className="metric">$ {overall?.overallPrice21K}</div>
+          <div className="metric">$ {parseFloat(overall?.overallPrice21K).toFixed(2)}</div>
         </div>
         <div className="card">
           <h2>avg Ojur 18K</h2>
@@ -98,21 +98,21 @@ export default function FeaturedInfo() {
         </div>
         <div className="card">
           <h2>avg Ojur 21K</h2>
-          <div className="metric">$ {overall?.avgOjur21K}</div>
+          <div className="metric">$ {parseFloat(overall?.avgOjur21K).toFixed(2)}</div>
         </div>
       </div>
       <div className="weights">
         <div className="card">
           <h2>Total 18K</h2>
-          <div className="metric">{overall?.overall18K} g</div>
+          <div className="metric">{parseFloat(overall?.overall18K).toFixed(2)} g</div>
         </div>
         <div className="card">
           <h2>Total 21K</h2>
-          <div className="metric">{overall?.overall21K} g</div>
+          <div className="metric">{parseFloat(overall?.overall21K).toFixed(2)} g</div>
         </div>
         <div className="card">
           <h2>Total 24K</h2>
-          <div className="metric">{overall?.overall24K} g</div>
+          <div className="metric">{parseFloat(overall?.overall24K).toFixed(2)} g</div>
         </div>
         <div className="card">
           <h2>Total Ramli</h2>
@@ -122,7 +122,7 @@ export default function FeaturedInfo() {
       <div className="silver">
         <div className="card">
           <h2>Total Silver</h2>
-          <div className="metric">{overall?.overallSilver} g</div>
+          <div className="metric">{parseFloat(overall?.overallSilver).toFixed(2)} g</div>
         </div>
       </div>
     </div>

@@ -94,7 +94,7 @@ export default function FeaturedInfo() {
         </div>
         <div className="card">
           <h2>avg Ojur 18K</h2>
-          <div className="metric">$ {overall?.avgOjur18K}</div>
+          <div className="metric">$ {parseFloat(overall?.avgOjur18K).toFixed(2)}</div>
         </div>
         <div className="card">
           <h2>avg Ojur 21K</h2>

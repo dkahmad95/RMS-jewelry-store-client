@@ -7,14 +7,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCTrans, getCTrans } from "../../../redux/apiCalls";
 import { format } from "date-fns";
-import { BasicModal } from "../../../components/modal/Modal";
+// import { BasicModal } from "../../../components/modal/Modal";
 
 
 const Transactions = () => {
   const dispatch = useDispatch();
   const cTrans = useSelector((state) => state.cTrans.cTrans);
   const user = useSelector((state) => state.user.currentUser.isAdmin);
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
   
   console.log(cTrans)
 
@@ -98,10 +98,11 @@ const Transactions = () => {
                 </Link>
               </div>
               <div className="iconTotalCell">
-              <BasicModal open={open} setOpen={setOpen} handleClick={() => handleDelete(params.row._id)} Title={"Delete"} Body={"Are you sure?"}/>
+              {/* <BasicModal open={open} setOpen={setOpen} handleClick={() => handleDelete(params.row._id)} Title={"Delete"} Body={"Are you sure?"}/> */}
                 <DeleteOutline
                 className="transactionsListDelete"
-                onClick={()=>setOpen(true)}
+                onClick={()=>handleDelete(params.row._id)}
+                // onClick={()=>setOpen(true)}
                 
                 />
                 </div>

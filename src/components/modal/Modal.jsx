@@ -39,7 +39,8 @@ const noButtonStyle = {
   backgroundColor: '#007bff', // Custom style for "No" button
 };
 
-export function BasicModal({ open, setOpen, handleClick , Title, Body}) {
+
+export function BasicModal({ open, setOpen, handleClick , Title, Body,id}) {
   return (
     <div>
       <Modal
@@ -60,6 +61,7 @@ export function BasicModal({ open, setOpen, handleClick , Title, Body}) {
             onClick={() => {
               handleClick();
               setOpen(false);
+             
             }}
           >
           Yes 

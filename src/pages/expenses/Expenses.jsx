@@ -5,14 +5,14 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { DeleteOutline } from "@mui/icons-material";
 import { DataGrid } from "@mui/x-data-grid";
-import { BasicModal } from "../../components/modal/Modal";
+// import { BasicModal } from "../../components/modal/Modal";
 
 const Expenses = () => {
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.expenses.expenses);
   console.log(expenses);
   const [inputs, setInputs] = useState({expensename: "salaries"});
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
   const isAdmin = useSelector((state) => state.user.currentUser.isAdmin);
 
   useEffect(() => {
@@ -22,7 +22,10 @@ const Expenses = () => {
 
   const handleDelete = (id) => {
     deleteExpenses(dispatch, id);
+    console.log(id)
   };
+
+  
 
   const columns = [
     {
@@ -71,15 +74,17 @@ const Expenses = () => {
               <>
                 <DeleteOutline
                   className="transactionsListDelete"
-                  onClick={() => setOpen(true)}
+                  onClick={()=>handleDelete(params.row._id)}
+                  // onClick={() => setOpen(true)}
                 />
-                <BasicModal
+                {/* <BasicModal
                   open={open}
                   setOpen={setOpen}
                   handleClick={() => handleDelete(params.row._id)}
+                 
                   Title={"Delete"}
                   Body={"Are you sure?"}
-                />
+                /> */}
               </>
             )}
           </div>

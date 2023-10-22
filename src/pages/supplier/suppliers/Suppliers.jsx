@@ -129,6 +129,7 @@ const Suppliers = () => {
       },
     },
   ];
+  const reversedsuppliers = [...suppliers].reverse();
 
   return (
     <div className="suppliers">
@@ -138,7 +139,7 @@ const Suppliers = () => {
       <div className="suppliersDataGrid" style={{ height: 400, width: "100%" }}>
         <DataGrid
           disableRowSelectionOnClick
-          rows={suppliers}
+          rows={reversedsuppliers}
           columns={columns}
           getRowId={(row, index) => `${row._id}-${index}`}
           initialState={{

@@ -32,10 +32,23 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    margin-right: 50px;
-    
-   
-    
+    margin-right: 50px; 
+  }
+
+  .errorFetchButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: rgb(194, 179, 115);
+    border-radius: 5px;
+    cursor: not-allowed;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px; 
+
   }
 
   .expensesDataGrid{

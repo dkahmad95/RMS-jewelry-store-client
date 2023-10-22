@@ -7,12 +7,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCTrans, getCTrans } from "../../../redux/apiCalls";
 import { format } from "date-fns";
+import CircularProgress from "../../../components/CircularProgress/CircularProgress";
 // import { BasicModal } from "../../../components/modal/Modal";
 
 
 const Transactions = () => {
   const dispatch = useDispatch();
   const cTrans = useSelector((state) => state.cTrans.cTrans);
+  const isFetching = useSelector((state)=> state.cTrans.isFetching)
+  const error = useSelector((state)=> state.cTrans.error)
+
   const user = useSelector((state) => state.user.currentUser.isAdmin);
   // const [open, setOpen] = React.useState(false);
   
@@ -71,7 +75,7 @@ const Transactions = () => {
       renderCell: (params) => {
         return (
           <div className="totalCell">
-            <span>$ {params.row.total}</span>
+            <span>$ {parseFloat(params.row.total).toFixed(2)}</span>
           </div>
         );
       },
@@ -115,6 +119,7 @@ const Transactions = () => {
       },
     },
   ];
+  const reversedCTrans = [...cTrans].reverse();
 
   return (
     <div className="transactions">
@@ -127,7 +132,7 @@ const Transactions = () => {
       >
         <DataGrid
           disableRowSelectionOnClick
-          rows={cTrans}
+          rows={reversedCTrans}
           columns={columns}
           getRowId={(row) => row._id}
           initialState={{
@@ -138,10 +143,14 @@ const Transactions = () => {
           pageSizeOptions={[5, 10 , 25 , 50 , 100]}
           checkboxSelection
         />
+         {isFetching && <CircularProgress />}
       </div>
+      
       <Link to="/newTransaction">
-        <button className="transactionsAddButton">Add</button>
+        <button disabled={isFetching || error} className={isFetching || error ? "errorFetchButton" : "transactionsAddButton"}>Add</button>
       </Link>
+      {error && <span style={{color:"red"}}>Somthing went worng! It might be your network connection or you entered an invalid value.<br/>Refresh and try again!</span>}
+
     </div>
   );
 };

@@ -92,6 +92,7 @@ const SupplierPayHistory = () => {
       },
     },
   ];
+  const reversedsupplierPay = [...supplierPay].reverse();
 
   return (
     <div className="supplierPayHistory">
@@ -105,7 +106,7 @@ const SupplierPayHistory = () => {
       >
         <DataGrid
           disableRowSelectionOnClick
-          rows={supplierPay}
+          rows={reversedsupplierPay}
           columns={columns}
           getRowId={(row, index) => `${row._id}-${index}`}
           initialState={{

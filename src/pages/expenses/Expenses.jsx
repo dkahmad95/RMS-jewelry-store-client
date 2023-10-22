@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { DeleteOutline } from "@mui/icons-material";
 import { DataGrid } from "@mui/x-data-grid";
 // import { BasicModal } from "../../components/modal/Modal";
+import CircularProgress from "../../components/CircularProgress/CircularProgress"
 
 const Expenses = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ const Expenses = () => {
   const [inputs, setInputs] = useState({expensename: "salaries"});
   // const [open, setOpen] = React.useState(false);
   const isAdmin = useSelector((state) => state.user.currentUser.isAdmin);
+  const isFetching = useSelector((state)=> state.expenses.isFetching)
+  const error = useSelector((state)=> state.expenses.error)
 
   useEffect(() => {
     getExpenses(dispatch);
@@ -72,7 +75,7 @@ const Expenses = () => {
           <div className="totalCell">
             {isAdmin && (
               <>
-                <DeleteOutline
+                < DeleteOutline
                   className="transactionsListDelete"
                   onClick={()=>handleDelete(params.row._id)}
                   // onClick={() => setOpen(true)}
@@ -104,7 +107,7 @@ const Expenses = () => {
     });
   };
   console.log("inputs", inputs);
-
+  const reversedExpenses = [...expenses].reverse();
   return (
     <div className="expenses">
       <div className="expenseContainer">
@@ -121,7 +124,7 @@ const Expenses = () => {
                   name="expensename"
                   id="expense"
                   onChange={handleInputChange}
-                >
+                  >
                   <option value="salaries">Salaries</option>
                   <option value="electricity">Electricity</option>
                   <option value="water">Water</option>
@@ -145,7 +148,7 @@ const Expenses = () => {
                     name="expensevalue"
                     onChange={handleInputChange}
                     placeholder="$"
-                  />
+                    />
                 </div>
               </div>
             </form>
@@ -154,10 +157,10 @@ const Expenses = () => {
         <div
           className="expensesDataGrid"
           style={{ height: 400, width: "100%" }}
-        >
+          >
           <DataGrid
             disableRowSelectionOnClick
-            rows={expenses}
+            rows={reversedExpenses}
             columns={columns}
             getRowId={(row) => row._id}
             initialState={{
@@ -167,11 +170,13 @@ const Expenses = () => {
             }}
             pageSizeOptions={[5, 10, 25, 50, 100]}
             checkboxSelection
-          />
+            />
+            {isFetching && <CircularProgress />}
         </div>
 
         <div className="buttonExpense">
-          <button className="expensesAddButton" onClick={handleAdd}>
+        {error && <span style={{color:"red"}}>Somthing went worng! It might be your network connection or you entered an invalid value.<br/>Refresh and try again!</span>}
+          <button disabled={isFetching || error} className={isFetching || error ? "errorFetchButton" :"expensesAddButton"} onClick={handleAdd}>
             Add
           </button>
         </div>

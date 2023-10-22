@@ -11,12 +11,12 @@ const NewTransaction = () => {
   const [total, setTotal] = useState(0);
   // eslint-disable-next-line
   const [itemTotal, setItemTotal] = useState([]);
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({customername:"N/A" , phone: 0 });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
+console.log(inputs)
   //handle customername and phone
   const handleInfo = (e) => {
     setInputs((prev) => {

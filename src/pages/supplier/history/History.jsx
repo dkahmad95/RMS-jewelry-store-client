@@ -13,7 +13,7 @@ const History = () => {
   const supplierTrans = useSelector(
     (state) => state.supplierTrans.supplierTrans
   );
-  console.log(supplierTrans)
+  console.log(supplierTrans);
   const suppliers = useSelector((state) => state.suppliers.oneSupplier);
 
   const supplierId = suppliers._id;
@@ -84,6 +84,7 @@ const History = () => {
       },
     },
   ];
+  const reversedSupplierTrans = [...supplierTrans].reverse();
 
   return (
     <div className="history">
@@ -94,7 +95,7 @@ const History = () => {
       <div className="historyDataGrid" style={{ height: 400, width: "100%" }}>
         <DataGrid
           disableRowSelectionOnClick
-          rows={supplierTrans}
+          rows={reversedSupplierTrans}
           columns={columns}
           getRowId={(row) => row._id}
           initialState={{
@@ -107,13 +108,14 @@ const History = () => {
         />
       </div>
       <Link to={"/supplierTrans/" + supplierId}>
-        <button 
-        onClick ={
-          ()=>{
+        <button
+          onClick={() => {
             getOneSupplierTrans(dispatch, supplierId);
-          }
-        }
-        className="historyAddButton">Add</button>
+          }}
+          className="historyAddButton"
+        >
+          Add
+        </button>
       </Link>
     </div>
   );

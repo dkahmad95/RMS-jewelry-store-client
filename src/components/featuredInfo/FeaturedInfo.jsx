@@ -80,7 +80,7 @@ export default function FeaturedInfo() {
         </div>
         <div className="card">
           <h2>Total Sales</h2>
-          <div className="metric">${overallSales}</div>
+          <div className="metric">${parseFloat(overallSales).toFixed(2)}</div>
         </div>
       </div>
       <div className="ojur">

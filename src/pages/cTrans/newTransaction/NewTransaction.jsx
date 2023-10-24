@@ -10,7 +10,7 @@ const NewTransaction = () => {
   const [formCounter, setFormCounter] = useState(0);
   const [total, setTotal] = useState(0);
   // eslint-disable-next-line
-  const [itemTotal, setItemTotal] = useState([]);
+  const [unitPrice, setUnitPrice] = useState([]);
   const [inputs, setInputs] = useState({customername:"N/A" , phone: 0 });
 
   const dispatch = useDispatch();
@@ -42,8 +42,8 @@ console.log(inputs)
       item: "18K",
       weight: "",
       desc: "",
-      unitPrice: "",
-      itemTotal: 0,
+      unitPrice: 0,
+      itemTotal: "",
     };
 
     setItems([...items, newForm]);
@@ -56,9 +56,9 @@ console.log(inputs)
     updatedItems[formIndex][event.target.name] = event.target.value;
     // Calculate the total for this form and update its local state
     const quantity =
-      parseFloat(updatedItems[formIndex].weight) *
-      parseFloat(updatedItems[formIndex].unitPrice);
-    updatedItems[formIndex].itemTotal = isNaN(quantity) ? 0 : quantity;
+      parseFloat(updatedItems[formIndex].itemTotal) /
+      parseFloat(updatedItems[formIndex].weight) 
+    updatedItems[formIndex].unitPrice = isNaN(quantity) ? 0 : quantity;
 
     setItems(updatedItems);
   };
@@ -73,11 +73,11 @@ console.log(inputs)
 
   useEffect(() => {
     // Calculate total unitPrices when data changes
-    const calculatedTotalPrices = items.map((item) => ({
+    const calculatedUnitPrice = items.map((item) => ({
       id: item.id,
-      total: item.weight * item.unitPrice,
+      total:  item.itemTotal/item.weight
     }));
-    setItemTotal(calculatedTotalPrices);
+    setUnitPrice(calculatedUnitPrice);
   }, [items]);
 
   // Function to calculate the total
@@ -166,7 +166,7 @@ console.log(inputs)
                   />
                 </div>
               </div>
-              <div className="newItemInput">
+              {/* <div className="newItemInput">
                 <label>Unit Price</label>
                 <div className="price">
                   <input
@@ -177,11 +177,23 @@ console.log(inputs)
                     onChange={(e) => handleInputChange(e, index)}
                   />
                 </div>
+              </div> */}
+              <div className="newItemInput">
+                <label>UntPrice</label>
+                <div className="unitPrice">
+                  <span name="unitPrice">${parseFloat(item.unitPrice).toFixed(2)}</span>
+                </div>
               </div>
               <div className="newItemInput">
                 <label>Total</label>
-                <div className="itemTotal">
-                  <span name="itemTotal">${item.itemTotal}</span>
+                <div className="price">
+                  <input
+                    type="text"
+                    name="itemTotal"
+                    placeholder="total"
+                    value={item.itemTotal}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
                 </div>
               </div>
             </form>

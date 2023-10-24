@@ -1,13 +1,14 @@
 import "./history.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Edit, OpenWith } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { format } from "date-fns";
-import { getOneSupplierTrans } from "../../../redux/apiCalls";
+import { getOneSupplier, getOneSupplierTrans } from "../../../redux/apiCalls";
 
 const History = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.user.currentUser.isAdmin);
   const supplierTrans = useSelector(
@@ -67,9 +68,13 @@ const History = () => {
           <>
             <div className="iconList">
               <div className="iconTotalList">
-                <Link to={"/supplierTransReceipt/" + params.row._id}>
-                  <OpenWith className="openWithIcon" />
-                </Link>
+                
+                  <OpenWith className="openWithIcon" onClick={async () => {
+                  await getOneSupplier(dispatch, params.row.supplierId)
+                  await getOneSupplierTrans(dispatch,params.row._id )
+                  navigate("/supplierTransReceipt/" + params.row._id);
+                }}/>
+                
               </div>
               {isAdmin && (
                 <div className="iconTotalList">

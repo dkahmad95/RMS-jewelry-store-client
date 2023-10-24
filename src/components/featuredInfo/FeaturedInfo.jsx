@@ -39,31 +39,34 @@ export default function FeaturedInfo() {
   }, [overall?.overall21K]);
 
   const avgOjur18K = parseFloat(
-    overall?.overallPrice18K / overall?.overall18K
-  ).toFixed(2);
+    (parseFloat(overall?.overallPrice18K) / parseFloat(overall?.overall18K)).toFixed(2)
+  );
 
-  const avgOjur21K = parseFloat(
-    overall?.overallPrice21K / overall?.overall21K
-  ).toFixed(2);
+  const avgOjur21K =  parseFloat(
+    (parseFloat(overall?.overallPrice21K) / parseFloat(overall?.overall21K)).toFixed(2)
+  );
 
   const overallRamli = useMemo(() => {
-    return (
-      parseFloat(w18KtoRamli) +
-      parseFloat(w21KtoRamli) +
-      parseFloat(overall?.overall24K)
-    ).toFixed(2);
+    return parseFloat(
+      (
+        parseFloat(w18KtoRamli) +
+        parseFloat(w21KtoRamli) +
+        parseFloat(overall?.overall24K)
+      ).toFixed(2)
+    );
   }, [w18KtoRamli, w21KtoRamli, overall?.overall24K]);
 
   const overallSales = useMemo(() => {
-    return (
-      parseFloat(overall?.overallCash) - parseFloat(overall?.overallExpenses)
+    return parseFloat((
+      parseFloat(overall?.overallCash) - parseFloat(overall?.overallExpenses)).toFixed(2)
     );
   }, [overall?.overallCash, overall?.overallExpenses]);
   const newOverallRamli = useMemo(() => {
     // eslint-disable-next-line
-    return overallRamli, overallSales, avgOjur18K, avgOjur21K
+    return {overallRamli, overallSales, avgOjur18K, avgOjur21K}
   }, [overallRamli, overallSales, avgOjur18K, avgOjur21K]);
-
+  console.log("newOverallRamli",newOverallRamli)
+  console.log("overall",overall)
 
   useEffect(() => {
     getOverall(dispatch);

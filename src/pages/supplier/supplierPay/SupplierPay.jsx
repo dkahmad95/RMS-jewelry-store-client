@@ -45,11 +45,11 @@ console.log(supplierId)
 
 
   const w18KtoRamli = useMemo(() => {
-    return ((inputs.weight18K * 750) / 995).toFixed(2);
+    return ((inputs.weight18K * 740) / 1000).toFixed(2);
   }, [inputs.weight18K]);
   
   const w21KtoRamli = useMemo(() => {
-    return ((inputs.weight21K * 875) / 995).toFixed(2);
+    return ((inputs.weight21K * 865) / 1000).toFixed(2);
   }, [inputs.weight21K]);
 
 

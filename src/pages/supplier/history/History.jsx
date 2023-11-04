@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { format } from "date-fns";
-import { getOneSupplier, getOneSupplierTrans } from "../../../redux/apiCalls";
+import { getOneSupplier, getOneSupplierTrans, getSupplierTrans } from "../../../redux/apiCalls";
+import { useEffect } from "react";
 
 const History = () => {
   const navigate = useNavigate()
@@ -16,8 +17,11 @@ const History = () => {
   );
   console.log(supplierTrans);
   const suppliers = useSelector((state) => state.suppliers.oneSupplier);
-
   const supplierId = suppliers._id;
+  console.log("supplierId",supplierId)
+  useEffect(()=>{
+   getSupplierTrans(dispatch,supplierId)
+  },[dispatch])
   const columns = [
     {
       field: "createdAt",

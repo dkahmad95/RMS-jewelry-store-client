@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./supplierTrans.css";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addSupplierTrans, updateSupplier } from "../../../redux/apiCalls";
+import { addSupplierTrans, getSupplierTrans, updateSupplier } from "../../../redux/apiCalls";
 
 const SupplierTrans = () => {
   const [items, setItems] = useState([]);
@@ -57,7 +57,7 @@ const SupplierTrans = () => {
         total18KWeight += weight;
       }
     }
-    return total18KWeight.toFixed(2);
+    return parseFloat(total18KWeight.toFixed(2));
   }, [items]);
 
   const total21KWeight = useMemo(() => {
@@ -69,7 +69,7 @@ const SupplierTrans = () => {
         total21KWeight += weight;
       }
     }
-    return total21KWeight.toFixed(2);
+    return parseFloat(total21KWeight.toFixed(2));
   }, [items]);
 
 
@@ -82,7 +82,7 @@ const SupplierTrans = () => {
         total24KWeight += weight;
       }
     }
-    return total24KWeight.toFixed(2);
+    return parseFloat(total24KWeight.toFixed(2));
   }, [items]);
 
   const silverWeight = useMemo(() => {
@@ -94,7 +94,7 @@ const SupplierTrans = () => {
         silverWeight += total;
       }
     }
-    return silverWeight.toFixed(2);
+    return parseFloat(silverWeight.toFixed(2));
   }, [items]);
 
   
@@ -107,7 +107,7 @@ const SupplierTrans = () => {
         total18K += total;
       }
     }
-    return total18K.toFixed(2);
+    return parseFloat(total18K.toFixed(2));
   }, [items]);
 
   const total21K = useMemo(() => {
@@ -119,7 +119,7 @@ const SupplierTrans = () => {
         total21K += total;
       }
     }
-    return total21K.toFixed(2);
+    return parseFloat(total21K.toFixed(2));
   }, [items]);
 
 
@@ -132,30 +132,30 @@ const SupplierTrans = () => {
         total24K += total;
       }
     }
-    return total24K.toFixed(2);
+    return parseFloat(total24K.toFixed(2));
   }, [items]);
 
 
 
   const w18KtoRamli = useMemo(() => {
-    return ((total18KWeight * 750) / 995).toFixed(2);
+    return parseFloat(((total18KWeight * 750) / 995).toFixed(2));
   }, [total18KWeight]);
 
   const w21KtoRamli = useMemo(() => {
-    return ((total21KWeight * 875) / 995).toFixed(2);
+    return parseFloat(((total21KWeight * 875) / 995).toFixed(2));
   }, [total21KWeight]);
   
 
   const ramliTotal = useMemo(() => {
-    return (parseFloat(w18KtoRamli) + parseFloat(w21KtoRamli)+ parseFloat(total24KWeight)).toFixed(2);
+    return parseFloat((parseFloat(w18KtoRamli) + parseFloat(w21KtoRamli)+ parseFloat(total24KWeight)).toFixed(2));
   }, [w18KtoRamli, w21KtoRamli,total24KWeight]);
 
   const ramliFinalBal = useMemo(() => {
-    return( parseFloat(ramliOldBal) + parseFloat(ramliTotal)).toFixed(2);
+    return parseFloat(( parseFloat(ramliOldBal) + parseFloat(ramliTotal)).toFixed(2));
   }, [ramliOldBal, ramliTotal]);
 
   const finalBalance = useMemo(() => {
-    return (parseFloat(cashOldBal) + parseFloat(total)).toFixed(2);
+    return parseFloat((parseFloat(cashOldBal) + parseFloat(total)).toFixed(2));
   }, [cashOldBal, total]);
 
   useEffect(() => {
@@ -184,8 +184,9 @@ const SupplierTrans = () => {
 
     const newFinalBalAndRamli = {ramliFinalBal,cashFinalBal}
 
-    addSupplierTrans(dispatch, newSupplierTrans)
+    await addSupplierTrans(dispatch, newSupplierTrans)
     await dispatch(updateSupplier(newFinalBalAndRamli,supplierId))
+    await getSupplierTrans(dispatch,supplierId)
   
     navigate("/history/"+ supplierId)
   };

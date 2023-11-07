@@ -118,9 +118,6 @@ const History = () => {
       </div>
       <Link to={"/supplierTrans/" + supplierId}>
         <button
-          onClick={() => {
-            getOneSupplierTrans(dispatch, supplierId);
-          }}
           className="historyAddButton"
         >
           Add

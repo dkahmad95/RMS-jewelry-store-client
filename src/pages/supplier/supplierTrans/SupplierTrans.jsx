@@ -182,10 +182,15 @@ const SupplierTrans = () => {
     const sTrans = { items, ramliSec, cashSec ,totalSilver};
     const newSupplierTrans = { supplierId, sTrans };
 
-    const newFinalBalAndRamli = {ramliFinalBal,cashFinalBal}
+    const newSupplier = {ramliFinalBal,cashFinalBal}
 
     await addSupplierTrans(dispatch, newSupplierTrans)
-    await dispatch(updateSupplier(newFinalBalAndRamli,supplierId))
+    try{
+
+      dispatch(updateSupplier(newSupplier, supplierId))
+    } catch (error) {
+      console.error("An error occurred while updating the supplier:", error);
+    }
     await getSupplierTrans(dispatch,supplierId)
   
     navigate("/history/"+ supplierId)

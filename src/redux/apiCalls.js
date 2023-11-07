@@ -1,7 +1,7 @@
 import { publicRequest, userRequest } from "../requestMethodes";
 import {  addCTransFailure, addCTransStart, addCTransSuccess, deleteCTransFailure, deleteCTransStart, deleteCTransSuccess, getCTransFailure, getCTransStart, getCTransSuccess, updateCTransFailure, updateCTransStart, updateCTransSuccess } from "./cTransRedux";
 import { loginFailure, loginStart, loginSuccess } from "./userRedux";
-import { addSuppliersFailure, addSuppliersStart, addSuppliersSuccess, deleteSuppliersStart, deleteSuppliersFailure, getSuppliersFailure, getSuppliersStart, getSuppliersSuccess, deleteSuppliersSuccess, getOneSupplierStart, getOneSupplierSuccess, getOneSupplierFailure } from "./suppliersRedux";
+import { addSuppliersFailure, addSuppliersStart, addSuppliersSuccess, deleteSuppliersStart, deleteSuppliersFailure, getSuppliersFailure, getSuppliersStart, getSuppliersSuccess, deleteSuppliersSuccess, getOneSupplierStart, getOneSupplierSuccess, getOneSupplierFailure, updateSuppliersStart, updateSuppliersSuccess, updateSuppliersFailure } from "./suppliersRedux";
 import { addSupplierTransFailure, addSupplierTransStart, addSupplierTransSuccess, deleteSupplierTransFailure, deleteSupplierTransStart, deleteSupplierTransSuccess, getOneSupplierTransFailure, getOneSupplierTransStart, getOneSupplierTransSuccess, getSupplierTransFailure, getSupplierTransStart, getSupplierTransSuccess, updateSupplierTransFailure, updateSupplierTransStart, updateSupplierTransSuccess } from "./supplierTransRedux";
 
 import { addExpensesFailure, addExpensesStart, addExpensesSuccess, deleteExpensesFailure, deleteExpensesStart, deleteExpensesSuccess, getExpensesFailure, getExpensesStart, getExpensesSuccess, updateExpensesFailure, updateExpensesStart, updateExpensesSuccess } from "./expensesRedux";
@@ -144,13 +144,13 @@ export const deleteSupplier = async (dispatch , id)=> {
 //update supplier using Thunk
 export const updateSupplier = (newSupplier, id) => {
   return async (dispatch) => {
-    dispatch(updateCTransStart());
+    dispatch(updateSuppliersStart());
     try {
       const res = await userRequest.put(`/supplier/${id}`, newSupplier);
 
-      dispatch(updateCTransSuccess(res.data));
+      dispatch(updateSuppliersSuccess(res.data));
     } catch (err) {
-      dispatch(updateCTransFailure(err));
+      dispatch(updateSuppliersFailure(err));
     }
   };
 };

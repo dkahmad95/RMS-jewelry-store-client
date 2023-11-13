@@ -7,6 +7,9 @@ import { addSupplierTrans, getSupplierTrans, updateSupplier } from "../../../red
 const SupplierTrans = () => {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [unitPrice, setUnitPrice] = useState([]);
+  const [formCounter, setFormCounter] = useState(0);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -16,31 +19,50 @@ const SupplierTrans = () => {
   const ramliOldBal = mySupplierById.ramliFinalBal;
 
   const cashOldBal = mySupplierById.cashFinalBal;
-
-  const addForm = () => {
-    const newForm = {
-      item: "18K",
-      weight: "",
-      desc: "",
-      unitPrice: "",
-    };
-
-    setItems([...items, newForm]);
+// Function to add a new form to the array
+const addForm = () => {
+  const newFormKey = formCounter + 1;
+  const newForm = {
+    id: formCounter,
+    item: "18K",
+    weight: "",
+    desc: "",
+    unitPrice: "",
+    itemTotal: "",
   };
 
-  const handleInputChange = useCallback(
-    (event, formIndex) => {
-      const updateditems = [...items];
-      updateditems[formIndex][event.target.name] = event.target.value;
-      setItems(updateditems);
-    },
-    [items]
-  );
+  setItems([...items, newForm]);
+  setFormCounter(newFormKey);
+};
+
+
+  // Function to handle items input changes
+  const handleInputChange = (event, formIndex) => {
+    const updatedItems = [...items];
+    updatedItems[formIndex][event.target.name] = event.target.value;
+    // Calculate the total for this form and update its local state
+    const quantity =
+      parseFloat(updatedItems[formIndex].itemTotal) /
+      parseFloat(updatedItems[formIndex].weight) 
+    updatedItems[formIndex].unitPrice = isNaN(quantity) ? 0 : quantity;
+
+    setItems(updatedItems);
+  };
+
+  // const handleInputChange = useCallback(
+  //   (event, formIndex) => {
+  //     const updateditems = [...items];
+  //     updateditems[formIndex][event.target.name] = event.target.value;
+  //     setItems(updateditems);
+  //   },
+  //   [items]
+  // );
 
   const calculateTotal = useCallback(() => {
     let sum = 0;
     items.forEach((item) => {
-      const quantity = parseFloat(item.weight) * parseFloat(item.unitPrice);
+      const quantity = 
+      parseFloat(item.weight) * parseFloat(item.unitPrice);
       if (!isNaN(quantity)) {
         sum += quantity;
       }
@@ -158,9 +180,7 @@ const SupplierTrans = () => {
     return parseFloat((parseFloat(cashOldBal) + parseFloat(total)).toFixed(2));
   }, [cashOldBal, total]);
 
-  useEffect(() => {
-    calculateTotal();
-  }, [items, calculateTotal]);
+ 
 
   const handleAddTrans = async (e) => {
     e.preventDefault();
@@ -196,6 +216,16 @@ const SupplierTrans = () => {
     navigate("/history/"+ supplierId)
   };
 
+  useEffect(() => {
+    // Calculate total unitPrices when data changes
+    const calculatedUnitPrice = items.map((item) => ({
+      id: item.id,
+      total:  item.itemTotal/item.weight
+    }));
+    setUnitPrice(calculatedUnitPrice);
+    calculateTotal();
+  }, [items,calculateTotal]);
+console.log(unitPrice)
   return (
     <div className="supplierTrans">
       <div className="SThistoryListTitle">
@@ -247,13 +277,19 @@ const SupplierTrans = () => {
                 </div>
               </div>
               <div className="itemInput">
-                <label>Unit Price</label>
+              <label>Unit Price</label>
                 <div className="price">
+                  <span name="unitPrice">${parseFloat(form.unitPrice).toFixed(2)}</span>
+                </div>
+              </div>
+              <div className="itemInput">
+                <label>Total</label>
+                <div className="total">
                   <input
                     type="text"
-                    name="unitPrice"
-                    placeholder="unitPrice/gram"
-                    value={form.unitPrice}
+                    name="itemTotal"
+                    placeholder="total"
+                    value={form.itemTotal}
                     onChange={(e) => handleInputChange(e, index)}
                   />
                 </div>

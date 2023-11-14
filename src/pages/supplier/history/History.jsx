@@ -21,7 +21,7 @@ const History = () => {
   console.log("supplierId",supplierId)
   useEffect(()=>{
    getSupplierTrans(dispatch,supplierId)
-  },[dispatch])
+  },[dispatch,supplierId])
   const columns = [
     {
       field: "createdAt",

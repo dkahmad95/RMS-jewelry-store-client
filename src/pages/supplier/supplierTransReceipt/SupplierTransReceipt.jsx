@@ -121,7 +121,7 @@ const SupplierTransReceipt = () => {
                 </span>
 
                 <span>
-                  <b> Ramli Old Balance:</b> {(item.ramliOldBal).toFixed(2)} g
+                  <b> Ramli Old Balance:</b> {item.ramliOldBal} g
                 </span>
 
                 <span>

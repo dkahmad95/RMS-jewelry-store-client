@@ -179,7 +179,7 @@ console.log(inputs)
                 </div>
               </div> */}
               <div className="newItemInput">
-                <label>Unit Price</label>
+                <label>UntPrice</label>
                 <div className="unitPrice">
                   <span name="unitPrice">${parseFloat(item.unitPrice).toFixed(2)}</span>
                 </div>

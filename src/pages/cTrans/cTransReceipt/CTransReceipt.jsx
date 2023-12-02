@@ -47,7 +47,7 @@ const CTransReceipt = () => {
                 <th>Description</th>
                 <th>Item</th>
                 <th>Weight</th>
-                <th>Unit Price</th>
+                {/* <th>Unit Price</th> */}
                 <th>Item Total</th>
               </tr>
             </thead>
@@ -57,7 +57,7 @@ const CTransReceipt = () => {
                   <td>{item.desc}</td>
                   <td>{item.item}</td>
                   <td>{item.weight} g</td>
-                  <td>$ {item.unitPrice}</td>
+                  {/* <td>$ {item.unitPrice}</td> */}
                   <td>$ {parseFloat(item.itemTotal).toFixed(2)}</td>
                 </tr>
               ))}

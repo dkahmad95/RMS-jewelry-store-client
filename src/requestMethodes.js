@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://rms-jewelry-store-server.onrender.com/api/";
+const BASE_URL = "https://rms-jewelry-store-server-test.onrender.com/api/";
 // const BASE_URL = "http://localhost:5000/api/";
 
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;

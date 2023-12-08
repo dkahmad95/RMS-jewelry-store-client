@@ -40,10 +40,10 @@ console.log(inputs)
     const newForm = {
       id: formCounter,
       item: "18K",
-      weight: "",
+      weight: "0",
       desc: "",
       unitPrice: 0,
-      itemTotal: "",
+      itemTotal: "0",
     };
 
     setItems([...items, newForm]);

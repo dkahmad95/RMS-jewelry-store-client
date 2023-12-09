@@ -187,7 +187,7 @@ const SupplierTrans = () => {
     await addSupplierTrans(dispatch, newSupplierTrans)
     try{
 
-      dispatch(updateSupplier(newSupplier, supplierId))
+      await dispatch(updateSupplier(newSupplier, supplierId))
     } catch (error) {
       console.error("An error occurred while updating the supplier:", error);
     }

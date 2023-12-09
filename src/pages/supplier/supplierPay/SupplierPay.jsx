@@ -16,6 +16,7 @@ const SupplierPay = () => {
     weight18K: 0,
     weight21K: 0,
     weight24K: 0,
+    silver: 0,
     cash: 0,
     cashToRamli: 0,
     cashPayment: 0,
@@ -128,7 +129,7 @@ console.log(supplierId)
         <div className="supplierPayLeft">
           <div className="leftContent">
             <span className="ramliFinalBal">
-              <b>Ramli Balance:</b> {oneSupplier.ramliFinalBal} g
+              <b>Ramli Balance:</b> {parseFloat(oneSupplier.ramliFinalBal).toFixed(2)} g
             </span>
           </div>
           <div className="leftContent">

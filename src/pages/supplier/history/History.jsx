@@ -82,9 +82,13 @@ const History = () => {
               </div>
               {isAdmin && (
                 <div className="iconTotalList">
-                  <Link to={"/editSupplierTrans/" + params.row._id}>
-                    <Edit className="suppleirsTransEditButton" />
-                  </Link>
+                  
+                    <Edit className="suppleirsTransEditButton" onClick={async () => {
+                  await getOneSupplier(dispatch, params.row.supplierId)
+                  await getOneSupplierTrans(dispatch,params.row._id )
+                  navigate("/editSupplierTrans/" + params.row._id);
+                  }}/>
+                 
                 </div>
               )}
             </div>
